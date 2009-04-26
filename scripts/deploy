@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd app/WEB-INF
+jruby -S warble
+# jar xf tabbr.war
+~/bin/appengine-java-sdk-1.2.0/bin/appcfg.sh update tmp/war/
