@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/ui-lightness/jquery-ui.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" charset="utf-8">
+  <script type="text/javascript">
+  function majText(text){
+	document.getElementById("counter").innerHTML = 140 - text.value.length;
+  }
+  </script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>tabbr</title>
+  <body>
+    <h1>Hey biatch, this is your fuckin timeline, I fuck your mother in the ass</h1>
+    <form method="post" action="/tweet">
+    	<input type="text" value="" name="tweet" onkeypress="javascript:majText(this);" >
+	<label id="counter">140</label>
+	<br/>
+	<input type="submit" value="je suis une merde, je tweet" />
+    </form>
+    <ul>
+    <% request.params["friends_timeline"].each do |tweet| %>
+    	<li><b><%= tweet.user.name %> : <%= tweet.text %></b></li>
+    <% end %>
+    </ul>
+  </body>
+</html>
