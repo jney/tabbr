@@ -1,16 +1,36 @@
 require 'rubygems'
 require 'sinatra'
+require 'twitter'
 
 set :environment, :development
 
-helpers do
-  def clickable_menu
-    @_out_buf << '<div class="menu"><span class="arrow"></span><div class="menu-content">'
-    yield
-    @_out_buf << '</div></div>'
-  end
+enable :sessions
+
+get "/" do
+	redirect "/home"
 end
 
-get '/' do
-  erb :index
+get "/home" do
+	erb :home	
+end
+
+post "/login" do
+	session["login"] = params["login"]
+	session["pwd"] = params["pwd"]
+	redirect "/timeline"
+end
+
+get "/timeline" do
+	timeline = []
+	httpauth = Twitter::HTTPAuth.new(session["login"],session["pwd"])
+	client = Twitter::Base.new(httpauth)
+	request.params["friends_timeline"] = client.friends_timeline
+	erb :timeline
+end
+
+post "/tweet" do
+	httpauth = Twitter::HTTPAuth.new(session["login"],session["pwd"])
+	client = Twitter::Base.new(httpauth)
+	client.update(params["tweet"])
+	redirect "/timeline"
 end
