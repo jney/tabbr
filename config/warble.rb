@@ -1,6 +1,6 @@
 Warbler::Config.new do |config|
   config.staging_dir = "app"
-  config.gems = ["sinatra", "twitter"]
+  config.gems = %w[jruby-openssl sinatra twitter]
   config.dirs = []
   config.gem_dependencies = true
  
