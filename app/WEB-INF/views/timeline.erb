@@ -11,7 +11,7 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>tabbr</title>
   <body>
-    <h1>Hey biatch, this is your fuckin timeline, I fuck your mother in the ass</h1>
+    <h1>Hey biatch, this is your fuckin timeline</h1>
     <form method="post" action="/tweet">
     	<input type="text" value="" name="tweet" onkeypress="javascript:majText(this);" >
 	<label id="counter">140</label>
@@ -20,7 +20,7 @@
     </form>
     <ul>
     <% request.params["friends_timeline"].each do |tweet| %>
-    	<li><b><%= tweet.user.name %> : <%= tweet.text %></b></li>
+    	<li><b><%= tweet.user.screen_name %> : <%= tweet.text %></b></li>
     <% end %>
     </ul>
   </body>

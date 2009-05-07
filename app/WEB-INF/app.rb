@@ -7,7 +7,11 @@ set :environment, :development
 enable :sessions
 
 get "/" do
-	redirect "/home"
+	if(session["base"].nil?)
+		redirect "/home"
+	else
+		redirect "/timeline"
+	end
 end
 
 get "/home" do
@@ -15,22 +19,18 @@ get "/home" do
 end
 
 post "/login" do
-	session["login"] = params["login"]
-	session["pwd"] = params["pwd"]
+	httpauth = Twitter::HTTPAuth.new(params["login"],params["pwd"])
+	session["base"] = Twitter::Base.new(httpauth)	
 	redirect "/timeline"
 end
 
 get "/timeline" do
 	timeline = []
-	httpauth = Twitter::HTTPAuth.new(session["login"],session["pwd"])
-	client = Twitter::Base.new(httpauth)
-	request.params["friends_timeline"] = client.friends_timeline
+	request.params["friends_timeline"] = session["base"].friends_timeline
 	erb :timeline
 end
 
 post "/tweet" do
-	httpauth = Twitter::HTTPAuth.new(session["login"],session["pwd"])
-	client = Twitter::Base.new(httpauth)
-	client.update(params["tweet"])
+	session["base"].update(params["tweet"])
 	redirect "/timeline"
 end
