@@ -6,6 +6,15 @@ set :environment, :development
 
 enable :sessions
 
+helpers do
+  def add_links(txt)
+    txt.
+      gsub(/(http:\/\/\S+)/, '<a href="http://\1" onclick="target=\"_blank\"">\1</a>').
+      gsub(/@([a-zA-Z0-9_]+)/, '@<a href="http://twitter.com/\1" onclick="target=\"_blank\"">\1</a>').
+      gsub(/#(\S+)/, '#<a href="http://search.twitter.com/search?q=\1" onclick="target=\"_blank\"">\1</a>')
+  end
+end
+
 get "/" do
 	if(session["base"].nil?)
 		redirect "/home"

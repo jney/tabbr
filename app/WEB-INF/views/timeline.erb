@@ -20,7 +20,7 @@
     </form>
     <ul>
     <% request.params["friends_timeline"].each do |tweet| %>
-    	<li><b><%= tweet.user.screen_name %> : <%= tweet.text %></b></li>
+    	<li><b><%= tweet.user.screen_name %> : <%= add_links(tweet.text) %></b></li>
     <% end %>
     </ul>
   </body>
