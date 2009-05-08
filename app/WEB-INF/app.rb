@@ -15,16 +15,20 @@ helpers do
   end
 end
 
-get "/" do
-	if(session["base"].nil?)
-		redirect "/home"
-	else
-		redirect "/timeline"
+before do
+	if(!["/login", "/connect"].include? request.path_info )
+		if(session["base"].nil? || session["base"] == {})
+			redirect "/login"
+		end	
 	end
 end
 
-get "/home" do
-	erb :home	
+get "/" do
+	redirect "/timeline"
+end
+
+get "/login" do
+	erb :login	
 end
 
 post "/login" do
