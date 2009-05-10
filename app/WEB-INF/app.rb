@@ -3,8 +3,8 @@ require 'sinatra'
 require 'twitter'
 
 set :environment, :development
-
 enable :sessions
+# layout :none, :only => :xhr 
 
 helpers do
   def add_links(txt)
@@ -13,6 +13,10 @@ helpers do
     gsub(/@([a-zA-Z0-9_]+)/, '@<a href="http://twitter.com/\1" onclick="target=\'_blank\'">\1</a>').
     gsub(/#(\S+)/, '#<a href="http://search.twitter.com/search?q=\1" onclick="target=\'_blank\'">\1</a>')
   end
+end
+
+before do
+  # should check if authenticated
 end
 
 get "/" do

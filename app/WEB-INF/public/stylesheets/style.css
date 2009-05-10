@@ -1,13 +1,19 @@
 @import url("/stylesheets/menu.css");
 @import url("/stylesheets/tabs.css");
 
-body {font-size:80%;color:#222;background:#fff;font-family:Futura,"Century Gothic",AppleGothic,sans-serif;margin:10px;text-align:left;line-height:1.5;}
+body {font-size:80%;color:#222;background:#fff;font-family:'Lucida Grande',sans-serif;margin:10px;text-align:left;line-height:1.5;}
 h1, h2, h3 {font-weight:normal;color:#111;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
 h2 {font-size:2em;margin-bottom:0.75em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
 h1 img, h2 img, h3 img {margin:0;}
 
+#container {
+  margin:1em auto;
+  position:relative;
+  text-align:left;
+  width:763px;
+}
 
 .plus {
   background:#CCCCCC none repeat scroll 0 0;
