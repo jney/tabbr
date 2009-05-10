@@ -7,6 +7,10 @@
 </form>
 <ul>
   <% for tweet in @tweets %>
-    <li><b><%= tweet.user.screen_name %> : <%= add_links(tweet.text) %></b></li>
+    <li>
+      <img src="<%= tweet.user.profile_image_url %>" />
+      <strong><%= tweet.user.screen_name %></strong>
+      <%= add_links(tweet.text) %>
+    </li>
   <% end %>
 </ul>
